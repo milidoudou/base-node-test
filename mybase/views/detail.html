@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+  </title>
+  <% include base/base-head.html %>
+    <script src='/javascripts/detail.js'></script>
+</head>
+
+<body>
+  <% include base/top.html %>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-7">
+          <embed src="<%= movie.src %>" allowFullScreen="true" quality="high" width="100%" height="500px;" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
+          <% comment.forEach(function(e){%>
+            <div class="media">
+              <div class="media-left">
+                <a href="#">
+                </a>
+              </div>
+              <div class="media-body">
+                <h4 class="media-heading"><%= e.from.name %> <button type="button" class="btn btn-default btn-xs "><a href="#toForm" class='reply' data-cid='<%= e._id%>' data-tid='<%= e.from._id %>' >回复</a></button> </h4>
+                <%= e.content %>
+              </div>
+            </div>
+            <% }) %>
+              <div id="toForm">
+                <form action="/comment" method="post">
+                  <% if(user){ %>
+                    <input type="hidden" name="from" value="<%= user._id %>">
+                    <% } %>
+                      <input type="hidden" name="movie" value="<%= movie._id %>">
+                      <textarea class="form-control" rows="3" name="content"></textarea>
+                      <button type="submit" class="btn btn-primary">提交</button>
+                </form>
+              </div>
+        </div>
+        <div class="col-md-5">
+          <dl class="dl-horizontal">
+            <dt>标题</dt>
+            <dd>
+              <%= movie.title %>
+            </dd>
+            <dt>先关英雄</dt>
+            <dd>
+              <%= movie.hero %>
+            </dd>
+            <dt>分享人</dt>
+            <dd>
+              <%= movie.userId %>
+            </dd>
+            <dt>基本介绍</dt>
+            <dd>
+              <%= movie.intro %>
+            </dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+</body>
+
+</html>

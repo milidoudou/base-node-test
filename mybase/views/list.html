@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>list</title>
+  <% include base/base-head.html %>
+</head>
+
+<body>
+  <% include base/top.html %>
+    <div class="container">
+      <div class="row">
+        <table class="table table-hover table-bordered">
+          <thead>
+            <tr>
+              <th>序号</th>
+              <th>用户名</th>
+              <th>姓名</th>
+              <th>昵称</th>
+              <th>ID</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% member.forEach(function(v,i,d){ %>
+              <tr>
+                <td>
+                  <%= i %>
+                </td>
+                <td>
+                  <a href="user/<%= v._id %>">
+                    <%= v.name %>
+                  </a>
+                </td>
+                <td>
+                  <%= v.dota.name %>
+                </td>
+                <td>
+                  <%= v.dota.gameName %>
+                </td>
+                <td>
+                  <%= v.dota.dotaId %>
+                </td>
+              </tr>
+              <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+</body>
+
+</html>
